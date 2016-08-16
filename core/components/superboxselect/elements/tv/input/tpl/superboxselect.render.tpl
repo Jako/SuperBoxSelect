@@ -9,19 +9,24 @@
                 name: 'id',
                 type: 'int'
             }, {
-                name: 'pagetitle',
+                name: {/literal}'{$params.displayField}'{literal},
                 type: 'string'
             }],{/literal}
             url: '{$connector}',{literal}
             baseParams: {{/literal}
-                action: 'mgr/resources/getlist',
+                action: '{$params.processorAction}',
                 parents: '{$params.parents}',
                 depth: '{$params.depth}',
                 limitRelatedContext: {if ($params.limitRelatedContext == 1) || ($params.limitRelatedContext == 'true') }true{else}false{/if},
                 where: '{$params.where}',
                 {if ({!$params.pageSize})}limit: 0,
                 {/if}resource_id: '{$params.resourceId}',
-                context_key: '{$params.contextKey}'{literal}
+                context_key: '{$params.contextKey}',
+                packageName: '{$params.packageName}',
+                className: '{$params.className}',
+                displayField: '{$params.displayField}',
+                options: "{$tv->_fields.elements}"
+                {literal}
             }
         });
         new Ext.ux.form.SuperBoxSelect({ {/literal}
@@ -33,9 +38,9 @@
             msgTarget: 'title',
             fieldLabel: 'Resources',
             width: 400,
-            displayField: 'pagetitle',
-            {literal}displayFieldTpl: '{pagetitle} ({id})',
-            tpl: '<tpl for="."><div class="x-combo-list-item">{pagetitle} ({id})</div></tpl>',{/literal}
+            displayField: '{$params.displayField}',
+            {literal}displayFieldTpl: '{{/literal}{$params.displayField}{literal}} ({id})',
+            tpl: '<tpl for="."><div class="x-combo-list-item">{{/literal}{$params.displayField}{literal}} ({id})</div></tpl>',{/literal}
             valueField: 'id',
             {if ({$params.pageSize})}pageSize: {$params.pageSize},
             {/if}addNewDataOnBlur: false,
