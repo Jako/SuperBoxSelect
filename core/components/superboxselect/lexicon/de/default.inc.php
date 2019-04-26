@@ -30,3 +30,5 @@ $_lang['superboxselect.maxElements_msg'] = 'Maximale Anzahl von Elementen erreic
 
 $_lang['superboxselect.resources'] = 'Ressourcen';
 $_lang['superboxselect.users'] = 'Benutzer';
+
+$_lang['superboxselect.err_wrong_package'] = 'The package does not exist!';
