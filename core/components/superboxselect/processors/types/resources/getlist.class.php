@@ -36,22 +36,16 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
     public function prepareQueryBeforeCount(xPDOQuery $c)
     {
         // Get Properties
-        $id = $this->getProperty('id');
         $where = $this->getProperty('where', array());
-        $context_key = $this->getProperty('context_key', false);
-        $resource_id = intval($this->getProperty('resource_id'));
         $limitRelatedContext = $this->getProperty('limitRelatedContext', false);
-        $parents = explode(',', $this->getProperty('parents', '0'));
+        $context_key = ($limitRelatedContext) ? $this->getProperty('context_key', false) : false;
+        $resource_id = intval($this->getProperty('resource_id'));
+        $parents = $this->getProperty('parents', '0');
+        $parents = ($parents) ? explode(',', $parents) : array();
         $depth = $this->getProperty('depth', 10);
 
-        if (!empty($id)) {
-            $c->where(array(
-                'id:IN' => array_map('intval', explode('|', $id))
-            ));
-        }
-
-        if($where) {
-            $where = $this->modx->fromJSON($where);
+        if ($where) {
+            $where = json_decode($where, true);
             $c->where($where);
         }
 
@@ -83,7 +77,7 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
                         $parent = ($parent) ? intval($parent) : 0;
                     } else {
                         // else get the system setting
-                        $parent = intval($this->modx->getOption($parent, NULL, 0));
+                        $parent = intval($this->modx->getOption($parent, null, 0));
                     }
                 }
                 $pchildren = $this->modx->getChildIds($parent, $depth, array('context' => $context_key));
@@ -106,7 +100,7 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
             $valuesqry = $this->getProperty('valuesqry');
             if (!empty($valuesqry)) {
                 $c->where(array(
-                    'id:in' => explode('|', $query)
+                    'id:IN' => explode('|', $query)
                 ));
             } else {
                 $c->where(array(
@@ -121,6 +115,11 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
             'deleted' => false,
             'published' => true
         ));
+
+        if ($this->modx->getOption('superboxselect.debug', null, false)) {
+            $c->prepare();
+            $this->modx->log(xPDO::LOG_LEVEL_ERROR, $c->toSQL());
+        }
         return $c;
     }
 
@@ -130,6 +129,12 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareQueryAfterCount(xPDOQuery $c)
     {
+        $id = $this->getProperty('id');
+        if (!empty($id)) {
+            $c->where(array(
+                'id:IN' => array_map('intval', explode('|', $id))
+            ));
+        }
         $c->sortby('pagetitle', 'ASC');
         return $c;
     }

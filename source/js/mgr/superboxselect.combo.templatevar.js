@@ -45,6 +45,7 @@ SuperBoxSelect.combo.SuperBoxSelectTV = function (config) {
         msgTarget: 'title',
         name: 'tv' + this.tvid + '[]',
         pageSize: this.options.pageSize,
+        stackItems: this.options.stackItems,
         queryDelay: 0,
         store: this.options.store,
         styleField: 'style',
@@ -66,6 +67,27 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
                 ' <span class="modx-tv-label-description">(' + newlabel +
                 ')</span>';
         }
+        var _this = this;
+        var item = document.querySelectorAll('#' + this.outerWrapEl.id + ' ul')[0];
+        if (item) {
+            item.setAttribute('data-xcomponentid', this.id);
+            new Sortable(item, {
+                onEnd: function (evt) {
+                    if (evt.currentTarget) {
+                        var cmpId = evt.currentTarget.getAttribute('data-xcomponentid');
+                        var cmp = Ext.getCmp(cmpId);
+                        if (cmp) {
+                            _this.refreshSorting(cmp);
+                            MODx.fireResourceFormChange();
+                        } else {
+                            console.log('Unable to reference xComponentContext.');
+                        }
+                    }
+                }
+            });
+        } else {
+            console.log('Unable to find select element');
+        }
     },
     beforeadditem: function (bs) {
         if (this.maxElements) {
@@ -82,6 +104,71 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
     },
     removeitem: function () {
         MODx.fireResourceFormChange();
+    },
+    refreshSorting: function (cmp) {
+        var viewList = cmp.items.items;
+        var dataInputList = document.querySelectorAll('#' + cmp.outerWrapEl.dom.id + ' .x-superboxselect-input');
+        var getElementIndex = function (item) {
+            var nodeList = Array.prototype.slice.call(item.parentElement.children);
+            return nodeList.indexOf(item);
+        };
+        var getElementByValue = function (val, list) {
+            for (var i = 0; i < list.length; i += 1) {
+                if (list[i].value === val) {
+                    return list[i];
+                }
+            }
+        };
+        var sortElementsByListIndex = function (list, callback) {
+            list.sort(compare);
+            if (callback instanceof Function) {
+                callback();
+            }
+        };
+        var syncElementsByValue = function (list1, list2, callback) {
+            var targetListRootElement = list2[0].parentElement;
+            if (targetListRootElement) {
+                for (var i = 0; i < list1.length; i += 1) {
+                    var item = list1[i];
+                    var targetItem = getElementByValue(String(item.value), list2);
+                    var initialTargetElement = list2[i];
+                    if (targetItem !== null && initialTargetElement !== undefined) {
+                        targetListRootElement.insertBefore(targetItem, initialTargetElement);
+                    }
+                }
+            } else {
+                console.debug('syncElementsByValue(), Unable to reference list root element.');
+                return false;
+            }
+            if (callback instanceof Function) {
+                callback();
+            }
+        };
+        var compare = function (a, b) {
+            var aIndex = getElementIndex(a.el.dom);
+            var bIndex = getElementIndex(b.el.dom);
+            if (aIndex < bIndex) {
+                return -1;
+            }
+            if (aIndex > bIndex) {
+                return 1;
+            }
+            return 0;
+        };
+        sortElementsByListIndex(viewList);
+        syncElementsByValue(viewList, dataInputList[0].children);
+        cmp.value = cmp.getValue();
+    },
+    getElementComponentContext: function (el) {
+        var parentClassList = Array.prototype.slice.call(el.classList);
+        if (el.tagName !== 'body') {
+            return null;
+        }
+        if (parentClassList.indexOf('x-superboxselect')) {
+            return el;
+        } else {
+            getElementComponentContext(el.parentElement);
+        }
     }
 });
 Ext.reg('superboxselect-combo-superboxselectv', SuperBoxSelect.combo.SuperBoxSelectTV);

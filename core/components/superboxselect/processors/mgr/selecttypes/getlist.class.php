@@ -31,19 +31,26 @@ class SuperboxselectSelecttypesGetListProcessor extends modProcessor
         }
 
         $results = array();
-        if ($id) {
-            $results[] = array(
-                'id' => $id,
-                'name' => $this->modx->lexicon($package . '.' . $id)
-            );
-        } else {
-            $files = glob($packageProcessorsPath . 'types/*', GLOB_ONLYDIR);
-            foreach ($files as $file) {
+        if (file_exists($packageProcessorsPath)) {
+            if ($id) {
                 $results[] = array(
-                    'id' => basename($file),
-                    'name' => $this->modx->lexicon($package . '.' . basename($file))
+                    'id' => $id,
+                    'name' => $this->modx->lexicon($package . '.' . $id)
                 );
+            } else {
+                $files = glob($packageProcessorsPath . 'types/*', GLOB_ONLYDIR);
+                foreach ($files as $file) {
+                    $results[] = array(
+                        'id' => basename($file),
+                        'name' => $this->modx->lexicon($package . '.' . basename($file))
+                    );
+                }
             }
+        } else {
+            $results[] = array(
+                'id' => ($id) ? $id : '',
+                'name' => $this->modx->lexicon('superboxselect.err_wrong_package'),
+            );
         }
         return $this->outputArray($results);
     }

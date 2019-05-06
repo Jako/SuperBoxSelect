@@ -1,4 +1,4 @@
 files:
-  - source: core/components/superboxselect/lexicon/en/*.php
+  - source: /core/components/superboxselect/lexicon/en/*.php
     translation: >-
-      core/components/superboxselect/lexicon/%two_letters_code%/%original_file_name%
+      /core/components/superboxselect/lexicon/%two_letters_code%/%original_file_name%

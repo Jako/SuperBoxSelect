@@ -31,7 +31,7 @@ switch ($modx->event->name) {
         $tv = $modx->getObject('modTemplateVar', $tvId);
         if ($tv) {
             $tvProperties = $tv->get('input_properties');
-            $package = $tvProperties['selectPackage'];
+            $package = isset($tvProperties['selectPackage']) ? $tvProperties['selectPackage'] : '';
         } else {
             $package = '';
         }

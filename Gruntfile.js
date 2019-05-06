@@ -2,7 +2,6 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         modx: grunt.file.readJSON('_build/config.json'),
-        sshconfig: grunt.file.readJSON('/Users/jako/Documents/MODx/partout.json'),
         banner: '/*!\n' +
         ' * <%= modx.name %> - <%= modx.description %>\n' +
         ' * Version: <%= modx.version %>\n' +
@@ -37,6 +36,7 @@ module.exports = function (grunt) {
         uglify: {
             mgr: {
                 src: [
+                    'node_modules/sortablejs/Sortable.js',
                     'source/js/mgr/superboxselect.js',
                     'source/js/mgr/superboxselect.panel.inputoptions.js',
                     'source/js/mgr/superboxselect.combo.templatevar.js',
@@ -59,10 +59,11 @@ module.exports = function (grunt) {
         },
         sass: {
             options: {
+                implementation: require('node-sass'),
                 outputStyle: 'expanded',
                 sourcemap: false
             },
-            dist: {
+            mgr: {
                 files: {
                     'source/css/mgr/superboxselect.css': 'source/sass/mgr/superboxselect.scss'
                 }
@@ -77,52 +78,34 @@ module.exports = function (grunt) {
                     })
                 ]
             },
-            dist: {
+            mgr: {
                 src: [
                     'source/css/mgr/superboxselect.css'
                 ]
             }
         },
         cssmin: {
-            superboxselect: {
+            mgr: {
                 src: [
                     'source/css/mgr/superboxselect.css'
                 ],
                 dest: 'assets/components/superboxselect/css/mgr/superboxselect.min.css'
             }
         },
-        sftp: {
-            css: {
-                files: {
-                    "./": [
-                        'assets/components/superboxselect/css/mgr/superboxselect.min.css'
-                    ]
-                },
+        imagemin: {
+            png: {
                 options: {
-                    path: '<%= sshconfig.hostpath %>develop/superboxselect/',
-                    srcBasePath: 'develop/superboxselect/',
-                    host: '<%= sshconfig.host %>',
-                    username: '<%= sshconfig.username %>',
-                    privateKey: '<%= sshconfig.privateKey %>',
-                    passphrase: '<%= sshconfig.passphrase %>',
-                    showProgress: true
-                }
-            },
-            js: {
-                files: {
-                    "./": [
-                        'assets/components/superboxselect/js/mgr/superboxselect.min.js'
-                    ]
+                    optimizationLevel: 7
                 },
-                options: {
-                    path: '<%= sshconfig.hostpath %>develop/superboxselect/',
-                    srcBasePath: 'develop/superboxselect/',
-                    host: '<%= sshconfig.host %>',
-                    username: '<%= sshconfig.username %>',
-                    privateKey: '<%= sshconfig.privateKey %>',
-                    passphrase: '<%= sshconfig.passphrase %>',
-                    showProgress: true
-                }
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'source/img/',
+                        src: ['**/*.png'],
+                        dest: 'assets/components/superboxselect/img/',
+                        ext: '.png'
+                    }
+                ]
             }
         },
         watch: {
@@ -130,13 +113,19 @@ module.exports = function (grunt) {
                 files: [
                     'source/**/*.js'
                 ],
-                tasks: ['uglify', 'usebanner:js', 'sftp:js']
+                tasks: ['uglify', 'usebanner:js']
             },
             css: {
                 files: [
                     'source/**/*.scss'
                 ],
-                tasks: ['sass', 'cssmin', 'usebanner:css', 'sftp:css']
+                tasks: ['sass', 'cssmin', 'usebanner:css']
+            },
+            config: {
+                files: [
+                    '_build/config.json'
+                ],
+                tasks: ['default']
             }
         },
         bump: {
@@ -147,8 +136,8 @@ module.exports = function (grunt) {
                 }],
                 options: {
                     replacements: [{
-                        pattern: /Copyright 2011(-\d{4})? by/g,
-                        replacement: 'Copyright ' + (new Date().getFullYear() > 2011 ? '2011-' : '') + new Date().getFullYear() + ' by'
+                        pattern: /Copyright 2016(-\d{4})? by/g,
+                        replacement: 'Copyright ' + (new Date().getFullYear() > 2016 ? '2016-' : '') + new Date().getFullYear() + ' by'
                     }]
                 }
             },
@@ -163,21 +152,33 @@ module.exports = function (grunt) {
                         replacement: 'version = \'' + '<%= modx.version %>' + '\''
                     }]
                 }
+            },
+            inputoptions: {
+                files: [{
+                    src: 'source/js/mgr/superboxselect.panel.inputoptions.js',
+                    dest: 'source/js/mgr/superboxselect.panel.inputoptions.js'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: /&copy; 2016(-\d{4})?/g,
+                        replacement: '&copy; ' + (new Date().getFullYear() > 2016 ? '2016-' : '') + new Date().getFullYear()
+                    }]
+                }
             }
         }
     });
 
     //load the packages
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-banner');
-    grunt.loadNpmTasks('grunt-ssh');
-    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.renameTask('string-replace', 'bump');
 
     //register the task
-    grunt.registerTask('default', ['bump', 'uglify', 'sass', 'postcss', 'cssmin', 'usebanner', 'sftp']);
+    grunt.registerTask('default', ['bump', 'uglify', 'sass', 'postcss', 'cssmin', 'usebanner']);
 };

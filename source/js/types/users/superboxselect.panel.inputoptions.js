@@ -24,43 +24,56 @@ SuperBoxSelect.panel.InputOptionsUsers = function (config) {
             layout: 'form',
             labelAlign: 'top',
             items: [{
-                xtype: 'textfield',
-                fieldLabel: _('superboxselect.allowedUsergroups'),
-                description: MODx.expandHelp ? '' : _('rsuperboxselect.allowedUsergroups_desc'),
-                name: 'inopt_allowedUsergroups',
-                id: 'inopt_allowedUsergroups',
-                value: this.params.allowedUsergroups || '',
-                anchor: '100%',
-                listeners: {
-                    change: {
-                        fn: this.markDirty,
-                        scope: this
-                    }
-                }
-            }, {
-                xtype: MODx.expandHelp ? 'label' : 'hidden',
-                forId: 'inopt_allowedUsergroups',
-                html: _('superboxselect.allowedUsergroups_desc'),
-                cls: 'desc-under'
-            }, {
-                xtype: 'textfield',
-                fieldLabel: _('superboxselect.deniedUsergroups'),
-                description: MODx.expandHelp ? '' : _('rsuperboxselect.deniedUsergroups_desc'),
-                name: 'inopt_deniedUsergroups',
-                id: 'inopt_deniedUsergroups',
-                value: this.params.deniedUsergroups || '',
-                anchor: '100%',
-                listeners: {
-                    change: {
-                        fn: this.markDirty,
-                        scope: this
-                    }
-                }
-            }, {
-                xtype: MODx.expandHelp ? 'label' : 'hidden',
-                forId: 'inopt_deniedUsergroups',
-                html: _('superboxselect.deniedUsergroups_desc'),
-                cls: 'desc-under'
+                layout: 'column',
+                items: [{
+                    columnWidth: .5,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'textfield',
+                        fieldLabel: _('superboxselect.allowedUsergroups'),
+                        description: MODx.expandHelp ? '' : _('rsuperboxselect.allowedUsergroups_desc'),
+                        name: 'inopt_allowedUsergroups',
+                        id: 'inopt_allowedUsergroups',
+                        value: this.params.allowedUsergroups || '',
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_allowedUsergroups',
+                        html: _('superboxselect.allowedUsergroups_desc'),
+                        cls: 'desc-under'
+                    }]
+                }, {
+                    columnWidth: .5,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'textfield',
+                        fieldLabel: _('superboxselect.deniedUsergroups'),
+                        description: MODx.expandHelp ? '' : _('rsuperboxselect.deniedUsergroups_desc'),
+                        name: 'inopt_deniedUsergroups',
+                        id: 'inopt_deniedUsergroups',
+                        value: this.params.deniedUsergroups || '',
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_deniedUsergroups',
+                        html: _('superboxselect.deniedUsergroups_desc'),
+                        cls: 'desc-under'
+                    }]
+                }]
             }]
         }]
     });

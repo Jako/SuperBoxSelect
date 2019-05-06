@@ -24,63 +24,81 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
             layout: 'form',
             labelAlign: 'top',
             items: [{
-                xtype: 'textfield',
-                fieldLabel: _('resourcelist_parents'),
-                description: MODx.expandHelp ? '' : _('resourcelist_parents_desc'),
-                name: 'inopt_parents',
-                id: 'inopt_parents',
-                value: this.params.parents || '',
-                anchor: '100%',
-                listeners: {
-                    change: {
-                        fn: this.markDirty,
-                        scope: this
-                    }
-                }
-            }, {
-                xtype: MODx.expandHelp ? 'label' : 'hidden',
-                forId: 'inopt_parents',
-                html: _('resourcelist_parents_desc'),
-                cls: 'desc-under'
-            }, {
-                xtype: 'textfield',
-                fieldLabel: _('resourcelist_depth'),
-                description: MODx.expandHelp ? '' : _('resourcelist_depth_desc'),
-                name: 'inopt_depth',
-                id: 'inopt_depth',
-                value: this.params.depth || 10,
-                anchor: '100%',
-                listeners: {
-                    change: {
-                        fn: this.markDirty,
-                        scope: this
-                    }
-                }
-            }, {
-                xtype: MODx.expandHelp ? 'label' : 'hidden',
-                forId: 'inopt_depth',
-                html: _('resourcelist_depth_desc'),
-                cls: 'desc-under'
-            }, {
-                xtype: 'combo-boolean',
-                fieldLabel: _('resourcelist_limitrelatedcontext'),
-                description: MODx.expandHelp ? '' : _('resourcelist_limitrelatedcontext_desc'),
-                name: 'inopt_limitRelatedContext',
-                hiddenName: 'inopt_limitRelatedContext',
-                id: 'inopt_limitRelatedContext',
-                value: this.params.limitRelatedContext == 1 || this.params.limitRelatedContext == 'true' ? 1 : 0,
-                anchor: '100%',
-                listeners: {
-                    change: {
-                        fn: this.markDirty,
-                        scope: this
-                    }
-                }
-            }, {
-                xtype: MODx.expandHelp ? 'label' : 'hidden',
-                forId: 'inopt_limitRelatedContext',
-                html: _('resourcelist_limitrelatedcontext_desc'),
-                cls: 'desc-under'
+                layout: 'column',
+                items: [{
+                    columnWidth: .33,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'textfield',
+                        fieldLabel: _('resourcelist_parents'),
+                        description: MODx.expandHelp ? '' : _('resourcelist_parents_desc'),
+                        name: 'inopt_parents',
+                        id: 'inopt_parents',
+                        value: this.params.parents || '',
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_parents',
+                        html: _('resourcelist_parents_desc'),
+                        cls: 'desc-under'
+                    }]
+                }, {
+                    columnWidth: .33,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'textfield',
+                        fieldLabel: _('resourcelist_depth'),
+                        description: MODx.expandHelp ? '' : _('resourcelist_depth_desc'),
+                        name: 'inopt_depth',
+                        id: 'inopt_depth',
+                        value: this.params.depth || 10,
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_depth',
+                        html: _('resourcelist_depth_desc'),
+                        cls: 'desc-under'
+                    }]
+                }, {
+                    columnWidth: .34,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'combo-boolean',
+                        fieldLabel: _('resourcelist_limitrelatedcontext'),
+                        description: MODx.expandHelp ? '' : _('resourcelist_limitrelatedcontext_desc'),
+                        name: 'inopt_limitRelatedContext',
+                        hiddenName: 'inopt_limitRelatedContext',
+                        id: 'inopt_limitRelatedContext',
+                        value: this.params.limitRelatedContext === 1 || this.params.limitRelatedContext === 'true' ? 1 : 0,
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_limitRelatedContext',
+                        html: _('resourcelist_limitrelatedcontext_desc'),
+                        cls: 'desc-under'
+                    }]
+                }]
             }, {
                 xtype: 'textarea',
                 fieldLabel: _('resourcelist_where'),

@@ -15,7 +15,7 @@
                 depth: '{$params.depth}',
                 {if ({!$params.pageSize})}limit: 0,
                 {/if}limitRelatedContext: {if ($params.limitRelatedContext == 1) || ($params.limitRelatedContext == 'true') }true{else}false{/if},
-                'package': '{$params.selectPackage}',
+                package: '{$params.selectPackage}',
                 parents: '{$params.parents}',
                 resource_id: '{$params.resourceId}',
                 where: '{$params.where}'{literal}
@@ -27,8 +27,9 @@
                 allowBlank: {if $params.allowBlank === 1 || $params.allowBlank === 'true'}true{else}false{/if},
                 fieldLabel: _('superboxselect.{$params.selectType}'),
                 fieldTpl: {if $params.fieldTpl}'{$params.fieldTpl}'{else}{literal}'{title} ({id})'{/literal}{/if},
-                maxElements: ({$params.maxElements * 1}) || 0,
-                pageSize: ({$params.pageSize * 1}) || 10,
+                maxElements: {($params.maxElements) ? $params.maxElements * 1 : 0},
+                {if $params.pageSize}pageSize: {$params.pageSize * 1},
+                {/if}stackItems: {if ($params.stackItems == 0) || ($params.stackItems == 'true') }true{else}false{/if},
                 store: tv{$tv->id}store,
                 tvid: '{$tv->id}',
                 value: '{$value}'{literal}
@@ -40,8 +41,8 @@
                 allowBlank: {if $params.allowBlank === 1 || $params.allowBlank === 'true'}true{else}false{/if},
                 fieldTpl: {if $params.fieldTpl}'{$params.fieldTpl}'{else}{literal}'{title} ({id})'{/literal}{/if},
                 fieldLabel: _('superboxselect.{$params.selectType}'),
-                maxElements: ({$params.maxElements * 1}) || 0,
-                pageSize: ({$params.pageSize * 1}) || 10,
+                maxElements: {($params.maxElements) ? $params.maxElements * 1 : 0},
+                {if $params.pageSize}pageSize: {$params.pageSize * 1},{/if}
                 store: tv{$tv->id}store,
                 tvid: '{$tv->id}',
                 value: '{$value}'{literal}

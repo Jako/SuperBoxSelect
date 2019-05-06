@@ -70,7 +70,8 @@ class SuperboxselectOptionsProcessor extends modProcessor
     {
         if ($this->inputOptionType) {
             $inputOptionType = array(
-                'type' => "{xtype: 'superboxselect-panel-inputoptions-$this->inputOptionType', params: config.params}",
+                'type' => "{xtype: 'superboxselect-panel-inputoptions-{$this->inputOptionType}', params: config.params}",
+                'success' => true
             );
             return $inputOptionType;
         } else {

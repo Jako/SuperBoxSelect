@@ -6,7 +6,7 @@
  * @return {string}
  */
 
-SuperBoxSelect.Renderer = function (value) {
+SuperBoxSelectTV.Renderer = function (value) {
     if (!value.length) {
         return '';
     }
