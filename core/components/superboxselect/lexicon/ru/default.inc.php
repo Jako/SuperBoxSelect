@@ -31,4 +31,4 @@ $_lang['superboxselect.maxElements_msg'] = 'Достигнуто максима�
 $_lang['superboxselect.resources'] = 'Ресурсы';
 $_lang['superboxselect.users'] = 'Пользователи';
 
-$_lang['superboxselect.err_wrong_package'] = 'The package does not exist!';
+$_lang['superboxselect.err_wrong_package'] = 'Пакет не существует!';
