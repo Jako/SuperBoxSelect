@@ -3,7 +3,7 @@
   "lowCaseName": "superboxselect",
   "description": "Advanced Listbox/Resource List Template Variable Type",
   "author": "Benjamin Vauchel, Thomas Jakobi",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "package": {
     "elements": {
       "plugins": [

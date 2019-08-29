@@ -1,7 +1,7 @@
 /*!
  * SuperBoxSelect - Advanced Listbox/Resource List Template Variable Type
- * Version: 2.3.2
- * Build date: 2019-04-26
+ * Version: 2.3.3
+ * Build date: 2019-05-06
  */
 
 #modx-input-props{padding:0}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-clear,.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-expand{width:30px;height:30px;position:absolute;right:30px;border:none}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-clear:before,.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-expand:before{-webkit-box-sizing:border-box;box-sizing:border-box;content:"\f00d";font-size:14px;margin-top:-7px;opacity:.6;position:absolute;top:50%;right:0;text-align:center;width:30px;-webkit-transition:opacity .25s;transition:opacity .25s;display:inline-block;font-family:FontAwesome;font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-expand{right:0;border-radius:0 3px 3px 0}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-expand:before{content:"\f0dc"}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-hide{display:none}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-over{background-color:#3697cd}.superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-over:before{color:#fff;opacity:1}.treehillstudio_about{cursor:pointer;height:40px;opacity:.25;-webkit-transition:opacity .5s;transition:opacity .5s;margin-top:20px}.treehillstudio_about:hover{opacity:1}.treehillstudio_about .x-panel-body{text-align:right}.treehillstudio_window a{color:#849125;text-decoration:none}.treehillstudio_window a:hover{color:#4d5415}

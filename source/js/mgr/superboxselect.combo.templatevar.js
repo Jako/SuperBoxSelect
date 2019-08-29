@@ -132,7 +132,7 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
                     var item = list1[i];
                     var targetItem = getElementByValue(String(item.value), list2);
                     var initialTargetElement = list2[i];
-                    if (targetItem !== null && initialTargetElement !== undefined) {
+                    if (typeof targetItem !== 'undefined' && typeof initialTargetElement !== 'undefined') {
                         targetListRootElement.insertBefore(targetItem, initialTargetElement);
                     }
                 }
@@ -145,13 +145,15 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
             }
         };
         var compare = function (a, b) {
-            var aIndex = getElementIndex(a.el.dom);
-            var bIndex = getElementIndex(b.el.dom);
-            if (aIndex < bIndex) {
-                return -1;
-            }
-            if (aIndex > bIndex) {
-                return 1;
+            if (typeof a.el.dom !== 'undefined' && typeof b.el.dom !== 'undefined') {
+                var aIndex = getElementIndex(a.el.dom);
+                var bIndex = getElementIndex(b.el.dom);
+                if (aIndex < bIndex) {
+                    return -1;
+                }
+                if (aIndex > bIndex) {
+                    return 1;
+                }
             }
             return 0;
         };

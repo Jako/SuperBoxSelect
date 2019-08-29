@@ -1,10 +1,3 @@
-/**
- * SuperBoxSelect Init Script
- *
- * @package superboxselect
- * @subpackage init script
- */
-
 var SuperBoxSelectTV = function (config) {
     config = config || {};
     SuperBoxSelectTV.superclass.constructor.call(this, config);

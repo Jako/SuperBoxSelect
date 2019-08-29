@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Get list processor for SuperBoxSelect TV.
  *
  * @package superboxselect
  * @subpackage processor
  */
+
 class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
 {
     /**
