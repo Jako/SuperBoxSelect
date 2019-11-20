@@ -8,4 +8,3 @@ _packages/*.*
 !_packages/*.zip
 
 node_modules/
-.idea/
