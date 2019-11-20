@@ -81,7 +81,7 @@ class SuperboxselectUsersGetListProcessor extends modObjectGetListProcessor
                 'id:IN' => array_map('intval', explode('|', $id))
             ));
         }
-        $c->sortby('pagetitle', 'ASC');
+        $c->sortby($this->getProperty('defaultSortField'), $this->getProperty('defaultSortDirection'));
         return $c;
     }
 
