@@ -24,6 +24,8 @@ $_lang['superboxselect.selectType'] = 'Тип';
 $_lang['superboxselect.selectType_desc'] = 'Тип содержимого выпадающего списка.';
 $_lang['superboxselect.stackItems'] = 'Элементы стека';
 $_lang['superboxselect.stackItems_desc'] = 'Если этот параметр включен, элементы SuperBoxSelect будут укладываться по одному в каждой строке. По умолчанию элементы отображаются в строке.';
+$_lang['superboxselect.valueField'] = 'Value Field';
+$_lang['superboxselect.valueField_desc'] = 'The name of the field whose value is stored in the template variable. Default: <code>id</code>';
 
 $_lang['superboxselect.maxElements_label'] = 'макс. {maxElements}';
 $_lang['superboxselect.maxElements_msg'] = 'Достигнуто максимальное количество элементов.';
