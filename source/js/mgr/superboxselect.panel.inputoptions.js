@@ -20,7 +20,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
         items: [{
             layout: 'column',
             items: [{
-                columnWidth: .5,
+                columnWidth: (SuperBoxSelect.config.advanced) ? .5 : 1,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -80,7 +80,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
         }, {
             layout: 'column',
             items: [{
-                columnWidth: .33,
+                columnWidth: (SuperBoxSelect.config.advanced) ? .33 : .5,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -130,7 +130,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     hidden: !SuperBoxSelect.config.advanced
                 }]
             }, {
-                columnWidth: .34,
+                columnWidth: (SuperBoxSelect.config.advanced) ? .34 : .5,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -219,8 +219,8 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                 afterrender: function (component) {
                     component.getEl().select('img').on('click', function () {
                         var msg = '<span style="display: inline-block; text-align: center;">&copy; 2011-2016 by Benjamin Vauchel <a href="https://github.com/benjamin-vauchel" target="_blank">github.com/benjamin-vauchel</a><br>' +
-                            '<img src="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio.png" srcset="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio@2x.png 2x" alt"Treehill Studio" style="margin-top: 10px"><br>' +
-                            '&copy; 2016-2019 by <a href="https://treehillstudio.com" target="_blank">treehillstudio.com</a></span>';
+                            '<img src="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio.png" srcset="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio@2x.png 2x" alt="Treehill Studio" style="margin-top: 10px"><br>' +
+                            '&copy; 2016-2020 by <a href="https://treehillstudio.com" target="_blank">treehillstudio.com</a></span>';
                         Ext.Msg.show({
                             title: _('superboxselect') + ' ' + SuperBoxSelect.config.version,
                             msg: msg,

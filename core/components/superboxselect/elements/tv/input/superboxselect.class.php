@@ -42,7 +42,7 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
         }
 
         $this->setPlaceholder('params', $params);
-        $this->setPlaceholder('value', str_replace('||', ',', $value));
+        $this->setPlaceholder('value', $value);
         $this->setPlaceholder('connector', $superboxselect->getOption('connectorUrl'));
     }
 }

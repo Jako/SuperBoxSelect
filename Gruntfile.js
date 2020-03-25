@@ -162,6 +162,18 @@ module.exports = function (grunt) {
                         replacement: '&copy; ' + (new Date().getFullYear() > 2016 ? '2016-' : '') + new Date().getFullYear()
                     }]
                 }
+            },
+            docs: {
+                files: [{
+                    src: 'mkdocs.yml',
+                    dest: 'mkdocs.yml'
+                }],
+                options: {
+                    replacements: [{
+                        pattern: /&copy; 2016(-\d{4})?/g,
+                        replacement: '&copy; ' + (new Date().getFullYear() > 2016 ? '2016-' : '') + new Date().getFullYear()
+                    }]
+                }
             }
         }
     });

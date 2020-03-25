@@ -1,6 +1,6 @@
 # SuperBoxSelect
 
-Advanced listbox/resource list custom template variable for MODX Revolution.
+Advanced `Listbox` / `Resource List` template variable type for MODx Revolution.
 
 - Author: Benjamin Vauchel <benjamin.vauchel@gmail.com>
 - Maintainer and further development: Thomas Jakobi <thomas.jakobi@partout.info>
@@ -8,7 +8,7 @@ Advanced listbox/resource list custom template variable for MODX Revolution.
 
 ## Features
 
-Advanced listbox/resource list template variable type for MODx Revolution
+Advanced `Listbox` / `Resource List` template variable type for MODx Revolution
 based on the SuperBoxSelect ExtJS Plugin. The template variable displays
 selected items (i.e. resources or other supported types) as labelled boxes
 within the form field. The item(s) could be searched by autocomplete in the
@@ -29,6 +29,10 @@ MODX Package Management
 
 Install via package manager, create a TV and change the input type to
 'SuperBoxSelect'
+
+## Documentation
+
+For more information please read the [documentation](https://jako.github.io/SuperBoxSelect/).
 
 ## GitHub Repository
 

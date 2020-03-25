@@ -62,11 +62,9 @@ $treehillstudio-color: #a9ba2f;
   opacity: .25;
   transition: opacity 0.5s;
   margin-top: 20px;
-
   &:hover {
     opacity: 1;
   }
-
   .x-panel-body {
     text-align: right;
   }
@@ -76,7 +74,6 @@ $treehillstudio-color: #a9ba2f;
   a {
     color: darken($treehillstudio-color, 10);
     text-decoration: none;
-
     &:hover {
       color: darken($treehillstudio-color, 25);
     }

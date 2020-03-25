@@ -26,7 +26,7 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
             items: [{
                 layout: 'column',
                 items: [{
-                    columnWidth: .33,
+                    columnWidth: .25,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -50,7 +50,7 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .33,
+                    columnWidth: .25,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -74,7 +74,31 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .34,
+                    columnWidth: .25,
+                    layout: 'form',
+                    labelAlign: 'top',
+                    items: [{
+                        xtype: 'textfield',
+                        fieldLabel: _('superboxselect.valueField'),
+                        description: MODx.expandHelp ? '' : _('superboxselect.valueField_desc'),
+                        name: 'inopt_valueField',
+                        id: 'inopt_valueField',
+                        value: this.params.valueField || 10,
+                        anchor: '100%',
+                        listeners: {
+                            change: {
+                                fn: this.markDirty,
+                                scope: this
+                            }
+                        }
+                    }, {
+                        xtype: MODx.expandHelp ? 'label' : 'hidden',
+                        forId: 'inopt_valueField',
+                        html: _('superboxselect.valueField_desc'),
+                        cls: 'desc-under'
+                    }]
+                }, {
+                    columnWidth: .25,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{

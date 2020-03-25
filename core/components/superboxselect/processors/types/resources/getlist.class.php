@@ -30,6 +30,18 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
     public $objectType = 'superboxselect.resources';
 
     /**
+     * @return bool
+     */
+    public function beforeQuery()
+    {
+        $valuesqry = $this->getProperty('valuesqry');
+        if (!empty($valuesqry)) {
+            $this->setProperty('limit', 0);
+        }
+        return true;
+    }
+
+    /**
      * @param xPDOQuery $c
      * @return xPDOQuery
      */
@@ -38,11 +50,12 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
         // Get Properties
         $where = $this->getProperty('where', array());
         $limitRelatedContext = $this->getProperty('limitRelatedContext', false);
-        $context_key = ($limitRelatedContext) ? $this->getProperty('context_key', false) : false;
-        $resource_id = intval($this->getProperty('resource_id'));
+        $contextKey = ($limitRelatedContext) ? $this->getProperty('contextKey', false) : false;
+        $resourceId = intval($this->getProperty('resourceId'));
         $parents = $this->getProperty('parents', '0');
         $parents = ($parents) ? explode(',', $parents) : array();
         $depth = $this->getProperty('depth', 10);
+        $valueField = $this->getProperty('valueField', 'id');
 
         if ($where) {
             $where = json_decode($where, true);
@@ -50,14 +63,14 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
         }
 
         // Get the context of the current edited resource
-        if (!$context_key) {
-            $resource = $this->modx->getObject('modResource', $resource_id);
-            $context_key = $resource->get('context_key');
+        if (!$contextKey) {
+            $resource = $this->modx->getObject('modResource', $resourceId);
+            $contextKey = $resource->get('context_key');
         }
 
         // Restrict to related context
         if (!empty($limitRelatedContext) && ($limitRelatedContext == 1 || $limitRelatedContext == 'true')) {
-            $c->where(array('context_key' => $context_key));
+            $c->where(array('context_key' => $contextKey));
         }
 
         // Get parents
@@ -68,7 +81,7 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
                 if (!is_numeric($parent)) {
                     // get the key of this context that is referenced by
                     $object = $this->modx->getObject('modContextSetting', array(
-                        'context_key' => $context_key,
+                        'context_key' => $contextKey,
                         'key' => $parent
                     ));
                     if ($object) {
@@ -80,7 +93,7 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
                         $parent = intval($this->modx->getOption($parent, null, 0));
                     }
                 }
-                $pchildren = $this->modx->getChildIds($parent, $depth, array('context' => $context_key));
+                $pchildren = $this->modx->getChildIds($parent, $depth, array('context' => $contextKey));
                 if (!empty($pchildren)) {
                     $children = array_merge($children, $pchildren);
                 }
@@ -98,18 +111,24 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
         $query = $this->getProperty('query');
         if (!empty($query)) {
             $valuesqry = $this->getProperty('valuesqry');
-            if (!empty($valuesqry)) {
-                $c->where(array(
-                    'id:IN' => explode('|', $query)
-                ));
-            } else {
+            if (empty($valuesqry)) {
                 $c->where(array(
                     'pagetitle:LIKE' => '%' . $query . '%'
                 ));
             }
         }
 
-        $c->select(array('id', 'pagetitle'));
+        // Exclude original value
+        $originalValue = $this->getProperty('originalValue');
+        if ($originalValue) {
+            $originalValue = array_map('trim', explode('||', $originalValue));
+            $c->where(array(
+                $valueField . ':NOT IN' => $originalValue
+            ));
+        }
+
+        $columns = (in_array($valueField, $this->modx->getFields($this->classKey))) ? array('id', $valueField, 'pagetitle') : array('id', 'pagetitle');
+        $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', $columns));
 
         $c->where(array(
             'deleted' => false,
@@ -129,13 +148,28 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareQueryAfterCount(xPDOQuery $c)
     {
-        $id = $this->getProperty('id');
-        if (!empty($id)) {
+        $valueField = $this->getProperty('valueField', 'id');
+        $valueField = (in_array($valueField, $this->modx->getFields($this->classKey))) ? $valueField : 'id';
+        if ($valueField != 'id') {
+            $c->groupby($this->classKey . '.' . $valueField);
+        }
+
+        $valuesqry = $this->getProperty('valuesqry');
+        if (!empty($valuesqry)) {
+            $query = $this->getProperty('query');
             $c->where(array(
-                'id:IN' => array_map('intval', explode('|', $id))
+                $valueField . ':IN' => explode('||', $query)
             ));
+        } else {
+            $id = $this->getProperty('id');
+            if (!empty($id)) {
+                $c->where(array(
+                    $valueField . ':IN' => array_map('trim', explode('||', $id))
+                ));
+            }
         }
         $c->sortby('pagetitle', 'ASC');
+
         return $c;
     }
 
@@ -145,8 +179,10 @@ class SuperboxselectResourcesGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareRow(xPDOObject $object)
     {
+        $valueField = $this->getProperty('valueField', 'id');
+        $valueField = (in_array($valueField, $this->modx->getFields($this->classKey))) ? $valueField : 'id';
         return array(
-            'id' => $object->get('id'),
+            'id' => $object->get($valueField),
             'title' => $object->get('pagetitle')
         );
     }

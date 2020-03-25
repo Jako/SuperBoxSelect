@@ -22,6 +22,8 @@ SuperBoxSelect.combo.SuperBoxSelectTV = function (config) {
         displayField: 'title',
         displayFieldTpl: this.options.fieldTpl,
         fieldLabel: this.options.fieldLabel,
+        valueDelimiter: '||',
+        queryValuesDelimiter: '||',
         listeners: {
             afterrender: {
                 fn: this.afterrender,
@@ -72,22 +74,25 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
         if (item) {
             item.setAttribute('data-xcomponentid', this.id);
             new Sortable(item, {
-                onEnd: function (evt) {
-                    if (evt.currentTarget) {
-                        var cmpId = evt.currentTarget.getAttribute('data-xcomponentid');
-                        var cmp = Ext.getCmp(cmpId);
-                        if (cmp) {
-                            _this.refreshSorting(cmp);
-                            MODx.fireResourceFormChange();
-                        } else {
-                            console.log('Unable to reference xComponentContext.');
+                onEnd: {
+                    fn: function (evt) {
+                        if (evt.target) {
+                            var cmpId = evt.target.getAttribute('data-xcomponentid');
+                            var cmp = Ext.getCmp(cmpId);
+                            if (cmp) {
+                                _this.refreshSorting(cmp);
+                                this.fireResourceFormChange();
+                            } else {
+                                console.log('Unable to reference xComponentContext.');
+                            }
                         }
-                    }
+                    }, scope: this
                 }
             });
         } else {
             console.log('Unable to find select element');
         }
+        this.store.baseParams.originalValue = this.value;
     },
     beforeadditem: function (bs) {
         if (this.maxElements) {
@@ -100,10 +105,12 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
         }
     },
     additem: function () {
-        MODx.fireResourceFormChange();
+        if (this.originalValue) {
+            this.fireResourceFormChange();
+        }
     },
     removeitem: function () {
-        MODx.fireResourceFormChange();
+        this.fireResourceFormChange();
     },
     refreshSorting: function (cmp) {
         var viewList = cmp.items.items;
@@ -171,6 +178,10 @@ SuperBoxSelect.combo.SuperBoxSelectTV = Ext.extend(SuperBoxSelect.combo.SuperBox
         } else {
             getElementComponentContext(el.parentElement);
         }
+    },
+    fireResourceFormChange: function () {
+        this.store.baseParams.originalValue = this.getValue();
+        MODx.fireResourceFormChange();
     }
 });
 Ext.reg('superboxselect-combo-superboxselectv', SuperBoxSelect.combo.SuperBoxSelectTV);

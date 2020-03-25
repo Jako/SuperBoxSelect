@@ -24,6 +24,8 @@ $_lang['superboxselect.selectType'] = 'Type';
 $_lang['superboxselect.selectType_desc'] = 'Content type of the dropdown list.';
 $_lang['superboxselect.stackItems'] = 'Stack Items';
 $_lang['superboxselect.stackItems_desc'] = 'If enabled, the SuperBoxSelect items will be stacked one per line. Per default the items are displayed inline.';
+$_lang['superboxselect.valueField'] = 'Value Field';
+$_lang['superboxselect.valueField_desc'] = 'The name of the field whose value is stored in the template variable. Default: <code>id</code>';
 
 $_lang['superboxselect.maxElements_label'] = 'max. {maxElements}';
 $_lang['superboxselect.maxElements_msg'] = 'Reached maximum number of elements.';

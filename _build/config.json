@@ -3,7 +3,7 @@
   "lowCaseName": "superboxselect",
   "description": "Advanced Listbox/Resource List Template Variable Type",
   "author": "Benjamin Vauchel, Thomas Jakobi",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "package": {
     "elements": {
       "plugins": [
@@ -35,13 +35,20 @@
       }
     ]
   },
+  "dependencies": [
+    {
+      "name": "php",
+      "version": ">=5.6"
+    },
+    {
+      "name": "modx",
+      "version": ">=2.6"
+    }
+  ],
   "build": {
     "readme": "docs/readme.md",
     "license": "docs/license.md",
     "changelog": "docs/changelog.md",
-    "options": {
-      "modx_version": "2.6"
-    },
     "setupOptions": {
       "source": "setup.options.php"
     },

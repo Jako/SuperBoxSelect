@@ -4,13 +4,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2020-03-22
+### Added
+- Allow other values to be saved in the SuperBoxSelect than the resource id
+### Changed
+- Restore pageSize for multi selects disabled in SuperBoxSelect 2.3.8
+- Fix showing 'The changes you made may not be saved' alert, even when the SuperBoxSelect value was not changed.
+
+## [2.3.8] - 2020-01-28
+### Changed
+- Fix a limit/pageSize issue
+
+## [2.3.7] - 2020-01-14
+### Changed
+- Fix autocomplete is not working on user list
+
+## [2.3.6] - 2020-01-04
+### Changed
+- Fix sorting of user selector [#15]. Thanks to @hugopeek
+
+## [2.3.5] - 2019-10-19
+### Changed
+- Fix an issue that stack items option can't be disabled
+
+## [2.3.4] - 2019-09-29
+### Changed
+- Update Sortable.js to 1.10.0 to fix drag & drop ordering
+
 ## [2.3.3] - 2019-05-06
 ### Changed
 - Fix drag & drop ordering after deleting a list element
 
 ## [2.3.2] - 2019-04-27
 ### Changed
-- Fix an issue, when an external package does not exist 
+- Fix an issue, when an external package does not exist
 - Fix drag & drop ordering
 
 ## [2.3.1] - 2019-03-20
@@ -19,14 +46,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use less space in input options
 
 ## [2.3.0] - 2019-02-17
-### Changed
+### Added
 - Enable stacking of the SuperBoxSelect values per template variable option
 
 ## [2.2.2] - 2017-02-03
 ### Changed
 - Fixing limit to related context option
 
-## [2.2.1] - 2017-01-29 
+## [2.2.1] - 2017-01-29
 ### Changed
 - Fixing disabling the pagination
 

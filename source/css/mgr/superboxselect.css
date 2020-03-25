@@ -11,8 +11,7 @@
 }
 
 .superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-clear:before, .superboxselect-tv .x-superboxselect-btns .x-superboxselect-btn-expand:before {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   content: "\f00d";
   font-size: 14px;
   margin-top: -7px;
@@ -23,7 +22,6 @@
   right: 0;
   text-align: center;
   width: 30px;
-  -webkit-transition: opacity 0.25s;
   transition: opacity 0.25s;
   display: inline-block;
   font-family: FontAwesome;
@@ -61,7 +59,6 @@
   cursor: pointer;
   height: 40px;
   opacity: .25;
-  -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
   margin-top: 20px;
 }
