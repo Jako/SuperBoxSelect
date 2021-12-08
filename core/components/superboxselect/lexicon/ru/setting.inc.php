@@ -5,7 +5,6 @@
  * @package superboxselect
  * @subpackage lexicon
  */
-
 $_lang['setting_superboxselect.advanced'] = 'Расширенный';
 $_lang['setting_superboxselect.advanced_desc'] = 'Показывать дополнительные настройки TV (например, шаблон пакета и поля).';
 $_lang['setting_superboxselect.debug'] = 'Отладка';
