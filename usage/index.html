@@ -318,6 +318,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migx-usage" class="md-nav__link">
+    MIGX usage
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -356,6 +363,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migx-usage" class="md-nav__link">
+    MIGX usage
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -381,6 +395,7 @@
 <thead>
 <tr>
 <th>Setting</th>
+<th>Key</th>
 <th>Description</th>
 <th>Default</th>
 </tr>
@@ -388,66 +403,89 @@
 <tbody>
 <tr>
 <td>Allow Blank</td>
+<td>allowBlank</td>
 <td>If set to No, MODX will not allow the user to save the Resource until a valid, non-blank value has been entered in the From Date input.</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Depth</td>
-<td><strong>(Type = Resource)</strong> The levels deep that the query to grab the list of Resources will go.</td>
-<td>10</td>
-</tr>
-<tr>
-<td>Field Template</td>
-<td><strong>(System setting superboxselect.advanced = active)</strong> Field template for the SuperBoxSelect (could contain html tags). Default: {title} ({id})</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Limit to Related Context</td>
-<td><strong>(Type = Resource)</strong> If Yes, will only include the Resources related to the context of the current Resource.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Max. Elements</td>
-<td>Maximum number of elements in the list. 0 means no limit</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Page Size</td>
-<td><strong>(Type = Resource)</strong> If the page size is greater than 0 and max. elements is 1, a pagination is displayed in the footer of the dropdown list.</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Parents</td>
-<td><strong>(Type = Resource)</strong> A list of IDs to grab children for the list.</td>
-<td>-</td>
-</tr>
-<tr>
-<td>Stack Items</td>
-<td>If enabled, the SuperBoxSelect items will be stacked one per line. Per default the items are displayed inline.</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>Content type of the dropdown list.</td>
-<td>Resources</td>
-</tr>
-<tr>
-<td>Where Conditions</td>
-<td><strong>(Type = Resource)</strong> A JSON object of where conditions to filter by in the query that grabs the list of Resources. (Does not support TV searching.) Examples: <code>[{"template:=":"4"}]</code>, <code>[{"pagetitle:!=":"Home"}]</code>, <code>[{"parent:IN":[34,56]}]</code></td>
-<td>-</td>
-</tr>
-<tr>
 <td>Allowed Usergroups</td>
+<td>allowedUsergroups</td>
 <td><strong>(Type = Users)</strong> Comma separated list of allowed usergroups.</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Denied Usergroups</td>
+<td>deniedUsergroups</td>
 <td><strong>(Type = Users)</strong> Comma separated list of denied usergroups.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td>depth</td>
+<td><strong>(Type = Resource)</strong> The levels deep that the query to grab the list of Resources will go.</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Field Template</td>
+<td>fieldTpl</td>
+<td><strong>(System setting superboxselect.advanced = active)</strong> Field template for the SuperBoxSelect (could contain html tags). Default: {title} ({id})</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Limit to Related Context</td>
+<td>limitRelatedContext</td>
+<td><strong>(Type = Resource)</strong> If Yes, will only include the Resources related to the context of the current Resource.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Max. Elements</td>
+<td>maxElements</td>
+<td>Maximum number of elements in the list. 0 means no limit</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Page Size</td>
+<td>pageSize</td>
+<td>If the page size is greater than 0 and max. elements is 1, a pagination is displayed in the footer of the dropdown list.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Parents</td>
+<td>parents</td>
+<td><strong>(Type = Resource)</strong> A list of IDs to grab children for the list.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Stack Items</td>
+<td>stackItems</td>
+<td>If enabled, the SuperBoxSelect items will be stacked one per line. Per default the items are displayed inline.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>selectType</td>
+<td>Content type of the dropdown list.</td>
+<td>Resources</td>
+</tr>
+<tr>
+<td>Where Conditions</td>
+<td>where</td>
+<td><strong>(Type = Resource)</strong> A JSON object of where conditions to filter by in the query that grabs the list of Resources. (Does not support TV searching.) Examples: <code>[{"template:=":"4"}]</code>, <code>[{"pagetitle:!=":"Home"}]</code>, <code>[{"parent:IN":[34,56]}]</code></td>
 <td>-</td>
 </tr>
 </tbody>
 </table>
+<h2 id="migx-usage">MIGX usage</h2>
+<p>To use a SuperBoxSelect in <code>inputTVtype</code>, you have to add the follwing values in
+a MIGX config:</p>
+<div class="highlight"><pre><span></span><code>    &quot;inputTVtype&quot;: &quot;superboxselect&quot;,
+    &quot;configs&quot;: {
+        &quot;selectType&quot;: &quot;users&quot;,
+        &quot;useRequest&quot;: &quot;1&quot;,
+        &quot;allowedUsergroups&quot;: ...
+    },
+</code></pre></div>
+<p>The other keys and values in the configs object have to be set according to the selectType options.</p>
                 
               
               
