@@ -425,7 +425,7 @@
 <tr>
 <td>Depth</td>
 <td>depth</td>
-<td><strong>(Type = Resource)</strong> The levels deep that the query to grab the list of Resources will go.</td>
+<td><strong>(Type = Resources)</strong> The levels deep that the query to grab the list of Resources will go.</td>
 <td>10</td>
 </tr>
 <tr>
@@ -437,7 +437,7 @@
 <tr>
 <td>Limit to Related Context</td>
 <td>limitRelatedContext</td>
-<td><strong>(Type = Resource)</strong> If Yes, will only include the Resources related to the context of the current Resource.</td>
+<td><strong>(Type = Resources)</strong> If Yes, will only include the Resources related to the context of the current Resource.</td>
 <td>No</td>
 </tr>
 <tr>
@@ -455,7 +455,13 @@
 <tr>
 <td>Parents</td>
 <td>parents</td>
-<td><strong>(Type = Resource)</strong> A list of IDs to grab children for the list.</td>
+<td><strong>(Type = Resources)</strong> A list of IDs to grab children for the list.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Resource Title Template</td>
+<td>resourceTitleTpl</td>
+<td><strong>(System setting superboxselect.advanced = active AND Type = Resources)</strong> Resource title template for the SuperBoxSelect. Can use @FILE, @INLINE bindings. Default: @INLINE [[+pagetitle]]</td>
 <td>-</td>
 </tr>
 <tr>
@@ -471,9 +477,15 @@
 <td>Resources</td>
 </tr>
 <tr>
+<td>User Title Template</td>
+<td>userTitleTpl</td>
+<td><strong>(System setting superboxselect.advanced = active AND Type = Users)</strong> User title template for the SuperBoxSelect. Can use @FILE, @INLINE bindings. Default: @INLINE [[+username]]</td>
+<td>-</td>
+</tr>
+<tr>
 <td>Where Conditions</td>
 <td>where</td>
-<td><strong>(Type = Resource)</strong> A JSON object of where conditions to filter by in the query that grabs the list of Resources. (Does not support TV searching.) Examples: <code>[{"template:=":"4"}]</code>, <code>[{"pagetitle:!=":"Home"}]</code>, <code>[{"parent:IN":[34,56]}]</code></td>
+<td><strong>(Type = Resources)</strong> A JSON object of where conditions to filter by in the query that grabs the list of Resources. (Does not support TV searching.) Examples: <code>[{"template:=":"4"}]</code>, <code>[{"pagetitle:!=":"Home"}]</code>, <code>[{"parent:IN":[34,56]}]</code></td>
 <td>-</td>
 </tr>
 </tbody>
