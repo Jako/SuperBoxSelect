@@ -121,7 +121,6 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
             if (empty($valuesqry)) {
                 $c->where([
                     'pagetitle:LIKE' => '%' . $query . '%',
-                    'OR:introtext:=' =>  '%' . $query . '%',
                     'OR:id:=' =>  $query
                 ]);
             }
