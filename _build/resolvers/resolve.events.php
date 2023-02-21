@@ -18,25 +18,35 @@
 function createEvent(xPDO &$modx, $name, $service = 0)
 {
     $success = true;
-    $ct = $modx->getCount('modEvent', [
+    $event = $modx->getObject('modEvent', [
         'name' => $name
     ]);
-    if (empty($ct)) {
+    if (!$event) {
         /** @var modEvent $event */
         $event = $modx->newObject('modEvent');
         $event->fromArray([
             'name' => $name,
             'service' => $service,
-            'groupname' => 'Babel'
+            'groupname' => 'SuperBoxSelect'
         ], '', true, true);
         if ($event->save()) {
-            $modx->log(xPDO::LOG_LEVEL_INFO, 'System event ' . $name . ' was created.');
+            $modx->log(xPDO::LOG_LEVEL_INFO, 'System event "' . $name . '" was created.');
         } else {
-            $modx->log(xPDO::LOG_LEVEL_ERROR, 'System event ' . $name . ' was not created.');
+            $modx->log(xPDO::LOG_LEVEL_ERROR, 'System event "' . $name . '" was not created.');
             $success = false;
         }
     } else {
-        $modx->log(xPDO::LOG_LEVEL_INFO, 'System event ' . $name . ' already exists.');
+        $event->fromArray([
+            'name' => $name,
+            'service' => $service,
+            'groupname' => 'SuperBoxSelect'
+        ], '', true, true);
+        if ($event->save()) {
+            $modx->log(xPDO::LOG_LEVEL_INFO, 'System event "' . $name . '" was updated.');
+        } else {
+            $modx->log(xPDO::LOG_LEVEL_ERROR, 'System event "' . $name . '" can\'t be updated.');
+            $success = false;
+        }
     }
     return $success;
 }
@@ -56,9 +66,9 @@ function removeEvent(xPDO &$modx, $name)
     if ($event) {
         $success = $event->remove();
         if ($success) {
-            $modx->log(xPDO::LOG_LEVEL_INFO, 'System event ' . $name . ' was removed.');
+            $modx->log(xPDO::LOG_LEVEL_INFO, 'System event "' . $name . '" was removed.');
         } else {
-            $modx->log(xPDO::LOG_LEVEL_ERROR, 'System event ' . $name . ' was not removed.');
+            $modx->log(xPDO::LOG_LEVEL_ERROR, 'System event "' . $name . '" was not removed.');
         }
     }
     return $success;
@@ -76,7 +86,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     case xPDOTransport::ACTION_INSTALL:
     case xPDOTransport::ACTION_UPGRADE:
         foreach ($events as $event) {
-            $created = createEvent($modx, $event, 2);
+            $created = createEvent($modx, $event, 6);
             $success = $success && $created;
         }
         break;
