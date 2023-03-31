@@ -66,8 +66,12 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
         $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', ['id', 'username']));
 
         if (!empty($allowedUsergroups) || !empty($deniedUsergroups)) {
-            $c->leftJoin('modUserGroupMember', 'modUserGroupMember', ['modUserGroupMember.member = modUser.id']);
-            $c->leftJoin('modUserGroup', 'modUserGroup', ['modUserGroup.id = modUserGroupMember.user_group']);
+            $c->leftJoin('modUserGroupMember', 'modUserGroupMember', [
+                'modUserGroupMember.member = modUser.id'
+            ]);
+            $c->leftJoin('modUserGroup', 'modUserGroup', [
+                'modUserGroup.id = modUserGroupMember.user_group'
+            ]);
             $c->groupby('modUser.id');
             if (!empty($allowedUsergroups)) {
                 $allowedUsergroups = explode(',', $allowedUsergroups);
