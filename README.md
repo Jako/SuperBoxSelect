@@ -1,4 +1,4 @@
-[![Weblate](https://hosted.weblate.org/widgets/modx-extras/superboxselect/standard/svg-badge.svg)](https://hosted.weblate.org/projects/modx-extras/superboxselect/standard/)
+[![Weblate](https://hosted.weblate.org/widget/modx-extras/superboxselect/standard/svg-badge.svg)](https://hosted.weblate.org/projects/modx-extras/superboxselect/standard/)
 
 # SuperBoxSelect
 
