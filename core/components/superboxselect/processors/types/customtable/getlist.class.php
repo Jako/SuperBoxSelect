@@ -63,9 +63,12 @@ class SuperboxselectCustomTableGetListProcessor extends ObjectGetListProcessor
                     'id:IN' => explode('||', $query)
                 ]);
             } else {
-                $c->where([
-                    'title:LIKE' => '%' . $query . '%'
-                ]);
+                foreach ($this->selectedFields as $index => $field) {
+                    $condition = $index === 0 ? '' : 'OR:';
+                    $c->where([
+                        $condition . $field . ':LIKE' => '%' . $query . '%'
+                    ]);
+                }
             }
         }
 
