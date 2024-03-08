@@ -27,8 +27,6 @@ class SuperboxselectCustomTableGetListProcessor extends ObjectGetListProcessor
         $tv = $this->modx->getObject('modTemplateVar', $tvid);
         if ($tv) {
             $tvProperties = $tv->get('input_properties');
-        } elseif ($this->getProperty('useRequest', 0)) {
-            $tvProperties = $this->getProperties();
         } else {
             $tvProperties = [];
             $c->where(['id' => 0]);
