@@ -14,7 +14,7 @@ class SuperboxselectCustomTableGetListProcessor extends ObjectGetListProcessor
     public $classKey = '';
     public $defaultSortField = 'id';
     public $defaultSortDirection = 'ASC';
-    private $selectedFields;
+    private $selectedFields = ['id'];
 
     /**
      * @return bool
@@ -36,9 +36,9 @@ class SuperboxselectCustomTableGetListProcessor extends ObjectGetListProcessor
         }
 
         $this->classKey = $this->modx->getOption('className', $tvProperties, '', true);
-        $this->selectedFields = $this->modx->getOption('selectedFields', $tvProperties, '', true);
-        if($this->selectedFields) {
-            $this->selectedFields = explode(',', $this->selectedFields);
+        $selectedFields = $this->modx->getOption('selectedFields', $tvProperties, '', true);
+        if($selectedFields) {
+            $this->selectedFields = array_unique(array_merge($this->selectedFields, explode(',', $selectedFields)));
         }
 
         $valuesqry = $this->getProperty('valuesqry');
