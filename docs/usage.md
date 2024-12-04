@@ -27,8 +27,7 @@ The following input options can be set in the template variable settings:
 To use a SuperBoxSelect in `inputTVtype`, you have to add the follwing values in a MIGX edit raw formtabs field (the
 JSON in the configs part can be pasted into the Field Configs textarea, when the formtabs field is edited normally):
 
-```
-...
+```json
 "inputTVtype": "superboxselect",
 "configs": {
     "allowBlank": "1",
@@ -49,7 +48,6 @@ JSON in the configs part can be pasted into the Field Configs textarea, when the
     "userTitleTpl": "@INLINE [[+username]]",
     "where": "[]"
 },
-...
 ```
 
 
