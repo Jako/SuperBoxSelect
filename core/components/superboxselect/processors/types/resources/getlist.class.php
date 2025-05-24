@@ -25,6 +25,7 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
         }
         return true;
     }
+    protected $search = ['pagetitle'];
 
     /**
      * @param xPDOQuery $c
@@ -114,17 +115,7 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
             ]);
         }
 
-        // Get query
-        $query = $this->getProperty('query');
-        if (!empty($query)) {
-            $valuesqry = $this->getProperty('valuesqry');
-            if (empty($valuesqry)) {
-                $c->where([
-                    'pagetitle:LIKE' => '%' . $query . '%',
-                    'OR:id:=' =>  $query
-                ]);
-            }
-        }
+        $c = parent::prepareQueryBeforeCount($c);
 
         // Exclude original value
         $originalValue = $this->getProperty('originalValue');

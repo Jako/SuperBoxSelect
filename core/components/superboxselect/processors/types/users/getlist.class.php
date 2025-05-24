@@ -25,6 +25,7 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
         }
         return true;
     }
+    protected $search = ['username'];
 
     /**
      * @param xPDOQuery $c
@@ -47,21 +48,6 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
         }
         $allowedUsergroups = $this->modx->getOption('allowedUsergroups', $tvProperties, '', true);
         $deniedUsergroups = $this->modx->getOption('deniedUsergroups', $tvProperties, '', true);
-
-        // Get query
-        $query = $this->getProperty('query');
-        if (!empty($query)) {
-            $valuesqry = $this->getProperty('valuesqry');
-            if (!empty($valuesqry)) {
-                $c->where([
-                    'id:IN' => explode('||', $query)
-                ]);
-            } else {
-                $c->where([
-                    'username:LIKE' => '%' . $query . '%'
-                ]);
-            }
-        }
 
         $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', ['id', 'username']));
 
@@ -89,6 +75,8 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
                 ]);
             }
         }
+
+        $c = parent::prepareQueryBeforeCount($c);
 
         // Exclude original value
         $originalValue = $this->getProperty('originalValue');
