@@ -146,13 +146,13 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
         if (!empty($valuesqry)) {
             $query = $this->getProperty('query');
             $c->where([
-                $valueField . ':IN' => explode('||', $query)
+                $valueField . ':IN' => array_map('trim', explode('||', $query))
             ]);
         } else {
             $id = $this->getProperty('id');
             if (!empty($id)) {
                 $c->where([
-                    $valueField . ':IN' => array_map('trim', explode('||', $id))
+                    $valueField . ':IN' => array_map('intval', explode('||', $id))
                 ]);
             }
         }
