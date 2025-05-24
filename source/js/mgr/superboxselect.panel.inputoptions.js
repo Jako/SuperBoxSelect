@@ -68,11 +68,10 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     html: _('superboxselect.maxElements_desc'),
                     cls: 'desc-under'
                 }]
-            }, {
+            }, (SuperBoxSelect.config.advanced) ? {
                 columnWidth: .33,
                 layout: 'form',
                 labelAlign: 'top',
-                hidden: !SuperBoxSelect.config.advanced,
                 items: [{
                     xtype: 'textfield',
                     fieldLabel: _('superboxselect.fieldTpl'),
@@ -93,7 +92,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     html: _('superboxselect.fieldTpl_desc'),
                     cls: 'desc-under',
                 }]
-            }, {
+            } : undefined, {
                 columnWidth: (SuperBoxSelect.config.advanced) ? .34 : .5,
                 layout: 'form',
                 labelAlign: 'top',
@@ -118,7 +117,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     html: _('superboxselect.stackItems_desc'),
                     cls: 'desc-under'
                 }]
-            }]
+            }].filter(x => x !== undefined)
         }, {
             layout: 'column',
             items: [{
@@ -173,9 +172,8 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }]
-        }, {
+        }, (SuperBoxSelect.config.advanced) ? {
             layout: 'column',
-            hidden: !SuperBoxSelect.config.advanced,
             items: [{
                 columnWidth: .5,
                 layout: 'form',
@@ -216,7 +214,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     typeAhead: true,
                     triggerAction: 'all',
                     editable: false,
-    mode: 'local',
+                    mode: 'local',
                     displayField: 'display',
                     valueField: 'value',
                     lazyInit: false,
@@ -241,7 +239,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }]
-        }, {
+        } : undefined, {
             xtype: 'superboxselect-panel-inputoptions-types',
             params: this.params
         }, {
@@ -263,7 +261,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     });
                 }
             }
-        }],
+        }].filter(x => x !== undefined),
         listeners: {
             afterrender: {
                 fn: this.inputOptionsAfterRender,
