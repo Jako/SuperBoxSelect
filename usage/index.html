@@ -570,12 +570,6 @@
 <td>Resources</td>
 </tr>
 <tr>
-<td>Use Request Values</td>
-<td>useRequest</td>
-<td>Use request values in the SuperBoxSelect getlist processor. Per default the template variable input options are used.</td>
-<td>No</td>
-</tr>
-<tr>
 <td>User Title Template</td>
 <td>userTitleTpl</td>
 <td><strong>(System setting superboxselect.advanced = active AND Type = Users)</strong> User title template for the SuperBoxSelect. Can use @FILE, @INLINE bindings.</td>
@@ -596,19 +590,21 @@ JSON in the configs part can be pasted into the Field Configs textarea, when the
 <span class="nt">&quot;configs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;allowBlank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;allowedUsergroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;className&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;deniedUsergroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;fieldTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{title} ({id})&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;limitRelatedContext&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;maxElements&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;packageName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;pageSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;parents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;resourceTitleTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@INLINE [[+pagetitle]]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;selectedFields&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;sortBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pagetitle&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;sortDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;stackItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;selectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resources&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;useRequest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;userTitleTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@INLINE [[+username]]&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;where&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[]&quot;</span>
 <span class="p">},</span>
