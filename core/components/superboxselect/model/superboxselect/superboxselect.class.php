@@ -3,7 +3,7 @@
  * SuperBoxSelect
  *
  * Copyright 2011-2016 by Benjamin Vauchel <contact@omycode.fr>
- * Copyright 2016-2022 by Thomas Jakobi <office@treehillstudio.com>
+ * Copyright 2016-2025 by Thomas Jakobi <office@treehillstudio.com>
  *
  * @package superboxselect
  * @subpackage classfile

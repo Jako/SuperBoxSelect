@@ -250,7 +250,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     this.getEl().select('img').on('click', function () {
                         var msg = '<span style="display: inline-block; text-align: center;">&copy; 2011-2016 by Benjamin Vauchel <a href="https://github.com/benjamin-vauchel" target="_blank">github.com/benjamin-vauchel</a><br>' +
                             '<img src="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio.png" srcset="' + SuperBoxSelect.config.assetsUrl + 'img/treehill-studio@2x.png 2x" alt="Treehill Studio" style="margin-top: 10px"><br>' +
-                            '&copy; 2016-2022 by <a href="https://treehillstudio.com" target="_blank">treehillstudio.com</a></span>';
+                            '&copy; 2016-2025 by <a href="https://treehillstudio.com" target="_blank">treehillstudio.com</a></span>';
                         Ext.Msg.show({
                             title: _('superboxselect') + ' ' + SuperBoxSelect.config.version,
                             msg: msg,

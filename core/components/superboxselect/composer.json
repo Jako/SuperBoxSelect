@@ -1,6 +1,7 @@
 {
   "name": "treehillstudio/superboxselect",
   "description": "Advanced Listbox/Resource List Template Variable",
+  "version": "3.1.0-pl2",
   "authors": [
     {
       "name": "Benjamin Vauchel",

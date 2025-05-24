@@ -1,9 +1,9 @@
 # SuperBoxSelect
 
-SuperBoxSelect is an Advanced 'Listbox' / 'Resource List' custom template
-variable for MODX Revolution based on the SuperBoxSelect Ext JS Plugin. The
-template variable displays selected items (i.e. resources or other supported
-types) as labelled boxes within the form field.
+SuperBoxSelect is an Advanced 'Listbox' / 'Resource List' / 'Custom Table'
+custom template variable type for MODX Revolution based on the SuperBoxSelect Ext JS
+Plugin. The template variable displays selected items (i.e. resources or other
+supported types) as labelled boxes within the form field.
 
 ### Requirements
 

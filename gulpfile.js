@@ -64,7 +64,16 @@ const scriptsUsers = function () {
         .pipe(header(banner + '\n', {pkg: pkg}))
         .pipe(gulp.dest('assets/components/superboxselect/js/types/users/'))
 };
-gulp.task('scripts', gulp.series(scriptsMgr, scriptsResources, scriptsUsers));
+const scriptsCustomTable = function () {
+    return gulp.src([
+        'source/js/types/customtable/superboxselect.panel.inputoptions.js'
+    ])
+        .pipe(concat('superboxselect.panel.inputoptions.min.js'))
+        .pipe(uglify())
+        .pipe(header(banner + '\n', {pkg: pkg}))
+        .pipe(gulp.dest('assets/components/superboxselect/js/types/customtable/'))
+};
+gulp.task('scripts', gulp.series(scriptsMgr, scriptsResources, scriptsUsers, scriptsCustomTable));
 
 const sassMgr = function () {
     return gulp.src([
@@ -136,7 +145,14 @@ const bumpRequirements = function () {
         .pipe(replace(/[*-] PHP (v)?\d.\d.*/g, '* PHP ' + phpversion + '+'))
         .pipe(gulp.dest('.'));
 };
-gulp.task('bump', gulp.series(bumpCopyright, bumpVersion, bumpOptions, bumpDocs, bumpRequirements));
+const bumpComposer = function () {
+    return gulp.src([
+        'core/components/superboxselect/composer.json',
+    ], {base: './'})
+        .pipe(replace(/"version": "\d+\.\d+\.\d+-?[0-9a-z]*"/ig, '"version": "' + pkg.version + '"'))
+        .pipe(gulp.dest('.'));
+};
+gulp.task('bump', gulp.series(bumpCopyright, bumpVersion, bumpOptions, bumpDocs, bumpRequirements, bumpComposer));
 
 gulp.task('watch', function () {
     // Watch .js files
