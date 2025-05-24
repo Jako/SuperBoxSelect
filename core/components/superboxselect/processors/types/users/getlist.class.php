@@ -70,7 +70,7 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
         // Exclude original value
         $originalValue = $this->getProperty('originalValue');
         if ($originalValue) {
-            $originalValue = array_map('trim', explode('||', $originalValue));
+            $originalValue = array_map('intval', explode('||', $originalValue));
             $c->where([
                 'id:NOT IN' => $originalValue
             ]);
