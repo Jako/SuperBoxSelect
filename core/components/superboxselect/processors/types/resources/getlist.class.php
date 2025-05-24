@@ -14,17 +14,6 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
     public $defaultSortField = 'pagetitle';
     public $defaultSortDirection = 'ASC';
 
-    /**
-     * @return bool
-     */
-    public function beforeQuery()
-    {
-        $valuesqry = $this->getProperty('valuesqry');
-        if (!empty($valuesqry)) {
-            $this->setProperty('limit', 0);
-        }
-        return true;
-    }
     protected $search = ['pagetitle'];
 
     /**
