@@ -367,6 +367,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#system-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Settings
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -417,6 +426,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#system-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Settings
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -462,6 +480,12 @@
 <td>-</td>
 </tr>
 <tr>
+<td>Class Name</td>
+<td>className</td>
+<td><strong>(Type = Custom Table)</strong> Class name of the xPDO object the data is retrieved from. Use the fully qualified class name, e.g. MyNamespace\MyPackage\MyClass depending on the xPDO package.</td>
+<td>No</td>
+</tr>
+<tr>
 <td>Denied Usergroups</td>
 <td>deniedUsergroups</td>
 <td><strong>(Type = Users)</strong> Comma separated list of denied usergroups.</td>
@@ -492,9 +516,15 @@
 <td>0</td>
 </tr>
 <tr>
+<td>Package Name</td>
+<td>packageName</td>
+<td><strong>(Type = Custom Table)</strong> Package name of the xPDO package. Not needed in MODX 3.x for packages with a bootstrap.php or for MODX 2.x extension packages.</td>
+<td>No</td>
+</tr>
+<tr>
 <td>Page Size</td>
 <td>pageSize</td>
-<td>If the page size is greater than 0 and max. elements is 1, a pagination is displayed in the footer of the dropdown list.</td>
+<td>If the page size is greater than 0, a pagination is displayed in the footer of the dropdown list.</td>
 <td>10</td>
 </tr>
 <tr>
@@ -508,6 +538,12 @@
 <td>resourceTitleTpl</td>
 <td><strong>(System setting superboxselect.advanced = active AND Type = Resources)</strong> Resource title template for the SuperBoxSelect. Can use @FILE, @INLINE bindings.</td>
 <td>@INLINE [[+pagetitle]]</td>
+</tr>
+<tr>
+<td>Selected Fields</td>
+<td>selectedFields</td>
+<td><strong>(Type = Custom Table)</strong> Comma separated list of fields to select from the table. You do not have to add the primary key field, it is always selected. You can use these fields in the field template and sorting column. The first field is automatically used for the sorting.</td>
+<td>No</td>
 </tr>
 <tr>
 <td>Sort By</td>
@@ -556,29 +592,29 @@
 <h2 id="migx-usage">MIGX usage</h2>
 <p>To use a SuperBoxSelect in <code>inputTVtype</code>, you have to add the follwing values in a MIGX edit raw formtabs field (the
 JSON in the configs part can be pasted into the Field Configs textarea, when the formtabs field is edited normally):</p>
-<div class="highlight"><pre><span></span><code>...
-&quot;inputTVtype&quot;: &quot;superboxselect&quot;,
-&quot;configs&quot;: {
-    &quot;allowBlank&quot;: &quot;1&quot;,
-    &quot;allowedUsergroups&quot;: &quot;&quot;,
-    &quot;deniedUsergroups&quot;: &quot;&quot;,
-    &quot;depth&quot;: &quot;10&quot;,
-    &quot;fieldTpl&quot;: &quot;{title} ({id})&quot;,
-    &quot;limitRelatedContext&quot;: &quot;0&quot;,
-    &quot;maxElements&quot;: &quot;0&quot;,
-    &quot;pageSize&quot;: &quot;10&quot;,
-    &quot;parents&quot;: &quot;&quot;,
-    &quot;resourceTitleTpl&quot;: &quot;@INLINE [[+pagetitle]]&quot;,
-    &quot;sortBy&quot;: &quot;pagetitle&quot;,
-    &quot;sortDir&quot;: &quot;ASC&quot;,
-    &quot;stackItems&quot;: &quot;0&quot;,
-    &quot;selectType&quot;: &quot;resources&quot;,
-    &quot;useRequest&quot;: &quot;1&quot;,
-    &quot;userTitleTpl&quot;: &quot;@INLINE [[+username]]&quot;,
-    &quot;where&quot;: &quot;[]&quot;
-},
-...
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;inputTVtype&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;superboxselect&quot;</span><span class="p">,</span>
+<span class="nt">&quot;configs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;allowBlank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;allowedUsergroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;deniedUsergroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;depth&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fieldTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{title} ({id})&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;limitRelatedContext&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;maxElements&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;pageSize&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parents&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;resourceTitleTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@INLINE [[+pagetitle]]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sortBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pagetitle&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sortDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ASC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stackItems&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;selectType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;resources&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;useRequest&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;userTitleTpl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;@INLINE [[+username]]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;where&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[]&quot;</span>
+<span class="p">},</span>
 </code></pre></div>
+<h2 id="system-settings">System Settings</h2>
+<p>SuperBoxSelect uses the following system settings in the namespace <code>superboxselect</code>:</p>
 
 
 
@@ -610,7 +646,7 @@ JSON in the configs part can be pasted into the Field Configs textarea, when the
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      &copy; 2016-2024 <a href="https://treehillstudio.com">Treehill Studio</a>
+      &copy; 2016-2025 <a href="https://treehillstudio.com">Treehill Studio</a>
     </div>
   
   
