@@ -11,7 +11,7 @@ use TreehillStudio\SuperBoxSelect\Processors\ObjectGetListProcessor;
 class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
 {
     public $classKey = 'modResource';
-    public $defaultSortField = 'pagetitle';
+    public $defaultSortField = 'BINARY pagetitle';
     public $defaultSortDirection = 'ASC';
 
     protected $search = ['pagetitle'];
