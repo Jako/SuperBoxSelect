@@ -58,7 +58,7 @@ class SuperboxselectCustomTableGetListProcessor extends ObjectGetListProcessor
     {
         $c = parent::prepareQueryBeforeCount($c);
 
-        $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', $this->selectedFields));
+        $c->select($this->modx->getSelectColumns($c->getClass(), $c->getAlias(), '', $this->selectedFields));
 
         // Exclude original value
         $originalValue = $this->getProperty('originalValue');

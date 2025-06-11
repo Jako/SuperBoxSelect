@@ -38,7 +38,7 @@ class SuperboxselectUsersGetListProcessor extends ObjectGetListProcessor
         $allowedUsergroups = $this->modx->getOption('allowedUsergroups', $tvProperties, '', true);
         $deniedUsergroups = $this->modx->getOption('deniedUsergroups', $tvProperties, '', true);
 
-        $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', ['id', 'username']));
+        $c->select($this->modx->getSelectColumns($c->getClass(), $c->getAlias(), '', ['id', 'username']));
 
         if (!empty($allowedUsergroups) || !empty($deniedUsergroups)) {
             $c->leftJoin('modUserGroupMember', 'modUserGroupMember', [

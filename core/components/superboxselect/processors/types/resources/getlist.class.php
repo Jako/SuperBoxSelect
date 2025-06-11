@@ -116,7 +116,7 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
         }
 
         $columns = (in_array($valueField, $this->modx->getFields($this->classKey))) ? ['id', $valueField, 'pagetitle'] : ['id', 'pagetitle'];
-        $c->select($this->modx->getSelectColumns($this->classKey, $this->classKey, '', $columns));
+        $c->select($this->modx->getSelectColumns($c->getClass(), $c->getAlias(), '', $columns));
 
         $c->where([
             'deleted' => false,
@@ -171,7 +171,7 @@ class SuperboxselectResourcesGetListProcessor extends ObjectGetListProcessor
     {
         $valueField = $this->getProperty('valueField', 'id');
         $valueField = (in_array($valueField, $this->modx->getFields($this->classKey))) ? $valueField : 'id';
-        $titleTpl = $this->getProperty('resourceTitleTpl', '@INLINE [[+pagetitle]]');
+        $titleTpl = $this->getProperty('resourceTitleTpl') ? $this->getProperty('resourceTitleTpl') : '@INLINE [[+pagetitle]]';
         return [
             'id' => $object->get($valueField),
             'title' => $this->superboxselect->getChunk($titleTpl, $object->toArray())
