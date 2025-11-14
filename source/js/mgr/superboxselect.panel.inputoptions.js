@@ -121,7 +121,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
         }, {
             layout: 'column',
             items: [{
-                columnWidth: .5,
+                columnWidth: .33,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -146,7 +146,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }, {
-                columnWidth: .5,
+                columnWidth: .33,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -169,6 +169,31 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     xtype: MODx.expandHelp ? 'label' : 'hidden',
                     forId: 'inopt_pageSize',
                     html: _('superboxselect.pageSize_desc'),
+                    cls: 'desc-under'
+                }]
+            }, {
+                columnWidth: .34,
+                layout: 'form',
+                labelAlign: 'top',
+                items: [{
+                    xtype: 'combo-boolean',
+                    fieldLabel: _('combo_forceselection'),
+                    description: MODx.expandHelp ? '' : _('combo_forceselection_multi_desc'),
+                    name: 'inopt_forceSelection',
+                    hiddenName: 'inopt_forceSelection',
+                    id: 'inopt_forceSelection',
+                    value: this.params.forceSelection === 0 || this.params.forceSelection === 'false' ? 0 : 1,
+                    anchor: '100%',
+                    listeners: {
+                        change: {
+                            fn: this.markDirty,
+                            scope: this
+                        }
+                    }
+                }, {
+                    xtype: MODx.expandHelp ? 'label' : 'hidden',
+                    forId: 'inopt_forceSelection',
+                    html: _('combo_forceselection_multi_desc'),
                     cls: 'desc-under'
                 }]
             }]

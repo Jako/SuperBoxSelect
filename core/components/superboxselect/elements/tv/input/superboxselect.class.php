@@ -93,9 +93,10 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
         $params = [
             'allowBlank' => ($params['allowBlank'] == 1 || $params['allowBlank'] == 'true'),
             'fieldTpl' => $params['fieldTpl'],
+            'forceSelection' => ($params['forceSelection'] == 1 || $params['forceSelection'] == 'true'),
             'maxElements' => ($params['maxElements']) ? $params['maxElements'] * 1 : 0,
             'pageSize' => ($params['pageSize']) ? $params['pageSize'] * 1 : 0,
-            'stackItems' => $params['stackItems'] == 1 || $params['stackItems'] == 'true'
+            'stackItems' => ($params['stackItems'] == 1 || $params['stackItems'] == 'true')
         ];
         if ($params['maxElements'] == 1) {
             unset($params['stackItems']);

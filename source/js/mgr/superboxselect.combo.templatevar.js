@@ -22,6 +22,7 @@ SuperBoxSelect.combo.SuperBoxSelectTV = function (config) {
         displayField: 'title',
         displayFieldTpl: this.options.fieldTpl,
         fieldLabel: this.options.fieldLabel,
+        forceSelection: this.options.forceSelection,
         valueDelimiter: '||',
         queryValuesDelimiter: '||',
         listeners: {
@@ -197,6 +198,7 @@ SuperBoxSelect.combo.SuperBoxSelectTVSingle = function (config) {
         ctCls: 'superboxselect-tv',
         displayField: 'title',
         fieldLabel: this.options.fieldLabel,
+        forceSelection: this.options.forceSelection,
         hiddenName: 'tv' + this.tvid,
         minChars: 2,
         mode: 'remote',
