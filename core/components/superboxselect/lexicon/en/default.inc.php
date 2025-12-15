@@ -7,12 +7,12 @@
  */
 $_lang['superboxselect'] = 'SuperBoxSelect';
 $_lang['superboxselect.allowedUsergroups'] = 'Allowed Usergroups';
-$_lang['superboxselect.allowedUsergroups_desc'] = 'Comma separated list of allowed usergroups';
+$_lang['superboxselect.allowedUsergroups_desc'] = 'Comma-separated list of allowed usergroups';
 $_lang['superboxselect.className'] = 'Class Name';
 $_lang['superboxselect.className_desc'] = 'Class name of the xPDO object the data is retrieved from. Use the fully qualified class name, e.g. MyNamespace\MyPackage\MyClass depending on the xPDO package.';
 $_lang['superboxselect.customtable'] = 'Custom Table';
 $_lang['superboxselect.deniedUsergroups'] = 'Denied Usergroups';
-$_lang['superboxselect.deniedUsergroups_desc'] = 'Comma separated list of denied usergroups';
+$_lang['superboxselect.deniedUsergroups_desc'] = 'Comma-separated list of denied usergroups';
 $_lang['superboxselect.fieldTpl'] = 'Field Template';
 $_lang['superboxselect.fieldTpl_desc'] = 'Field template for the SuperBoxSelect (could contain html tags). Default: <code>{title} ({id})</code>.';
 $_lang['superboxselect.maxElements'] = 'Max. Elements';
@@ -27,7 +27,7 @@ $_lang['superboxselect.resources'] = 'Resources';
 $_lang['superboxselect.resourceTitleTpl'] = 'Resource Title Template';
 $_lang['superboxselect.resourceTitleTpl_desc'] = 'Resource title template for the SuperBoxSelect. Can use @FILE, @INLINE bindings. Default: <code>@INLINE [[+pagetitle]]</code>.';
 $_lang['superboxselect.selectedFields'] = 'Selected Fields';
-$_lang['superboxselect.selectedFields_desc'] = 'Comma separated list of fields to select from the table. You do not have to add the primary key field, it is always selected. You can use these fields in the field template and sorting column. The first field is automatically used for the sorting.';
+$_lang['superboxselect.selectedFields_desc'] = 'Comma-separated list of fields to select from the table. You do not have to add the primary key field, it is always selected. You can use these fields in the field template and sorting column. The first field is automatically used for the sorting.';
 $_lang['superboxselect.selectType'] = 'Type';
 $_lang['superboxselect.selectType_desc'] = 'Content type of the dropdown list.';
 $_lang['superboxselect.sortBy'] = 'Sort By';
