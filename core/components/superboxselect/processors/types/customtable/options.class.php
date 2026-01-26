@@ -26,20 +26,20 @@ class SuperboxselectCustomTableOptionsProcessor extends OptionsProcessor
     {
         $renderOptions = [
             'params' => [
-                'fieldTpl' => ($defaults['fieldTpl']) ?: $this->fieldTpl,
-                'valueField' => isset($defaults['valueField']) ?: 'id',
+                'fieldTpl' => $this->getOption('fieldTpl', $defaults, $this->fieldTpl),
+                'valueField' => $this->getOption('valueField', $defaults, 'id'),
             ],
             'baseParams' => []
         ];
         if ($this->getProperty('useRequest')) {
             $baseParams = [
                 'useRequest' => false,
-                'packageName' => ($defaults['packageName']) ?: null,
-                'className' => ($defaults['className']) ?: null,
-                'selectedFields' => ($defaults['selectedFields']) ?: null,
-                'sortBy' => ($defaults['sortBy']) ?: null,
-                'sortDir' => ($defaults['sortDir']) ?: null,
-                'resourceTitleTpl' => ($defaults['resourceTitleTpl']) ?: null,
+                'packageName' => $this->getOption('packageName', $defaults),
+                'className' => $this->getOption('className', $defaults),
+                'selectedFields' => $this->getOption('selectedFields', $defaults),
+                'sortBy' => $this->getOption('sortBy', $defaults),
+                'sortDir' => $this->getOption('sortDir', $defaults),
+                'resourceTitleTpl' => $this->getOption('resourceTitleTpl', $defaults),
             ];
             foreach ($baseParams as $key => $value) {
                 if (is_null($value)) {

@@ -9,6 +9,35 @@
 class SuperboxselectInputRender extends modTemplateVarInputRender
 {
     /**
+     * Get a local configuration option by key.
+     *
+     * @param string $key The option key to search for.
+     * @param array $options An array of options that override MODX options.
+     * @param mixed $default The default value returned if the option is not found; by default this value is null.
+     * @param bool $skipEmpty True if empty string values should be ignored.
+     * @return mixed The option value or the default value specified.
+     */
+    public function getOption(string $key, $options, $default = null, $skipEmpty = false)
+    {
+        return $this->modx->getOption($key, $options, $default, $skipEmpty);
+    }
+
+    /**
+     * Get a boolean local configuration option by key.
+     *
+     * @param string $key The option key to search for.
+     * @param array $options An array of options that override MODX options.
+     * @param mixed $default The default value returned if the option is not found; by default this value is null.
+     * @return mixed The option value or the default value specified.
+     */
+    public function getBooleanOption(string $key, $options, $default = null)
+    {
+        $value = $this->modx->getOption($key, $options, $default);
+        return ($value == 1 || $value == 'true');
+    }
+
+
+    /**
      * Return the template path to load
      *
      * @return string
@@ -44,7 +73,7 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
             'core_path' => $corePath
         ]);
 
-        $selectType = (isset($params['selectType']) && $params['selectType'] != '') ? $params['selectType'] : 'resources';
+        $selectType = $this->getOption('selectType', $params, 'resources');
         $params = array_merge($params, [
             'resourceId' => ($this->modx->resource) ? $this->modx->resource->get('id') : 0,
             'contextKey' => ($this->modx->resource) ? $this->modx->resource->get('context_key') : 'web',
@@ -58,7 +87,7 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
         foreach ($internalTypes as $internalType) {
             $response = $this->modx->runProcessor('types/' . $internalType . '/options', [
                 'option' => 'renderOptions',
-                'useRequest' => $params['useRequest'],
+                'useRequest' => $this->getOption('useRequest', $params),
                 'params' => $params
             ], [
                 'processors_path' => $superboxselect->getOption('processorsPath')
@@ -71,7 +100,7 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
         // Add external types to the list
         $customTypes = $this->modx->invokeEvent('OnSuperboxselectTypeOptions', [
             'option' => 'renderOptions',
-            'useRequest' => $params['useRequest'],
+            'useRequest' => $this->getOption('useRequest', $params),
             'params' => $params
         ]);
         if (is_array($customTypes)) {
@@ -86,17 +115,17 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
         $baseParams = [
             'action' => 'types/' . $selectType . '/getlist',
             'tvid' => $this->tv->get('id'),
-            'resourceId' => $params['resourceId'],
-            'contextKey' => $params['contextKey'],
+            'resourceId' => $this->getOption('resourceId', $params),
+            'contextKey' => $this->getOption('contextKey', $params),
         ];
 
         $params = [
-            'allowBlank' => ($params['allowBlank'] == 1 || $params['allowBlank'] == 'true'),
-            'fieldTpl' => $params['fieldTpl'],
-            'forceSelection' => ($params['forceSelection'] == 1 || $params['forceSelection'] == 'true'),
-            'maxElements' => ($params['maxElements']) ? $params['maxElements'] * 1 : 0,
-            'pageSize' => ($params['pageSize']) ? $params['pageSize'] * 1 : 0,
-            'stackItems' => ($params['stackItems'] == 1 || $params['stackItems'] == 'true')
+            'allowBlank' => $this->getBooleanOption('allowBlank', $params),
+            'fieldTpl' => $this->getOption('fieldTpl', $params),
+            'forceSelection' => $this->getBooleanOption('forceSelection', $params),
+            'maxElements' => $this->getOption('maxElements', $params, 0) * 1,
+            'pageSize' => $this->getOption('pageSize', $params, 0) * 1,
+            'stackItems' => $this->getBooleanOption('stackItems', $params)
         ];
         if ($params['maxElements'] == 1) {
             unset($params['stackItems']);
@@ -113,7 +142,7 @@ class SuperboxselectInputRender extends modTemplateVarInputRender
 
         $this->setPlaceholder('baseParams', json_encode($baseParams, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
         $this->setPlaceholder('params', json_encode($params, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-        $this->setPlaceholder('multiple', $params['maxElements'] != 1 );
+        $this->setPlaceholder('multiple', $params['maxElements'] != 1);
         $this->setPlaceholder('value', $value);
     }
 }

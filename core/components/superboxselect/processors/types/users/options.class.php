@@ -26,19 +26,19 @@ class SuperboxselectUsersOptionsProcessor extends OptionsProcessor
     {
         $renderOptions = [
             'params' => [
-                'fieldTpl' => ($defaults['fieldTpl']) ?: $this->fieldTpl,
-                'valueField' => ($defaults['valueField']) ?: 'id',
+                'fieldTpl' => $this->getOption('fieldTpl', $defaults, $this->fieldTpl),
+                'valueField' => $this->getOption('valueField', $defaults, 'id'),
             ],
             'baseParams' => []
         ];
         if ($this->getProperty('useRequest')) {
             $baseParams = [
                 'useRequest' => true,
-                'allowedUsergroups' => ($defaults['allowedUsergroups']) ?: null,
-                'deniedUsergroups' => ($defaults['deniedUsergroups']) ?: null,
-                'sortBy' => ($defaults['sortBy']) ?: null,
-                'sortDir' => ($defaults['sortDir']) ?: null,
-                'userTitleTpl' => ($defaults['userTitleTpl']) ?: null,
+                'allowedUsergroups' => $this->getOption('allowedUsergroups', $defaults),
+                'deniedUsergroups' => $this->getOption('deniedUsergroups', $defaults),
+                'sortBy' => $this->getOption('sortBy', $defaults),
+                'sortDir' => $this->getOption('sortDir', $defaults),
+                'userTitleTpl' => $this->getOption('userTitleTpl', $defaults),
             ];
             foreach ($baseParams as $key => $value) {
                 if (is_null($value)) {

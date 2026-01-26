@@ -15,6 +15,19 @@ class OptionsProcessor extends Processor
     public $renderOptions = [];
 
     /**
+     * Get a local configuration option by key.
+     *
+     * @param string $key The option key to search for.
+     * @param array $options An array of options that override MODX options.
+     * @param mixed $default The default value returned if the option is not found; by default this value is null.
+     * @return mixed The option value or the default value specified.
+     */
+    public function getOption(string $key, $options, $default = null)
+    {
+        return $this->modx->getOption($key, $options, $default);
+    }
+
+    /**
      * Run the processor and return the result.
      *
      * @return mixed

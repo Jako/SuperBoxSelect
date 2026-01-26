@@ -26,21 +26,21 @@ class SuperboxselectResourcesOptionsProcessor extends OptionsProcessor
     {
         $renderOptions = [
             'params' => [
-                'fieldTpl' => ($defaults['fieldTpl']) ?: $this->fieldTpl,
-                'valueField' => ($defaults['valueField']) ?: 'id',
+                'fieldTpl' => $this->getOption('fieldTpl', $defaults, $this->fieldTpl),
+                'valueField' => $this->getOption('valueField', $defaults, 'id'),
             ],
             'baseParams' => []
         ];
         if ($this->getProperty('useRequest')) {
             $baseParams = [
                 'useRequest' => true,
-                'where' => ($defaults['where']) ?: null,
-                'limitRelatedContext' => ($defaults['limitRelatedContext']) ?: null,
-                'parents' => ($defaults['parents']) ?: null,
-                'depth' => ($defaults['depth']) ?: null,
-                'sortBy' => ($defaults['sortBy']) ?: null,
-                'sortDir' => ($defaults['sortDir']) ?: null,
-                'resourceTitleTpl' => ($defaults['resourceTitleTpl']) ?: null,
+                'where' => $this->getOption('where', $defaults),
+                'limitRelatedContext' => $this->getOption('limitRelatedContext', $defaults),
+                'parents' => $this->getOption('parents', $defaults),
+                'depth' => $this->getOption('depth', $defaults),
+                'sortBy' => $this->getOption('sortBy', $defaults),
+                'sortDir' => $this->getOption('sortDir', $defaults),
+                'resourceTitleTpl' => $this->getOption('resourceTitleTpl', $defaults),
             ];
             foreach ($baseParams as $key => $value) {
                 if (is_null($value)) {
