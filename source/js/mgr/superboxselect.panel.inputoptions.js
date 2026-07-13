@@ -69,7 +69,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }, (SuperBoxSelect.config.advanced) ? {
-                columnWidth: .33,
+                columnWidth: 0.33,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -121,7 +121,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
         }, {
             layout: 'column',
             items: [{
-                columnWidth: .33,
+                columnWidth: 0.33,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -146,7 +146,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }, {
-                columnWidth: .33,
+                columnWidth: 0.33,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -172,7 +172,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }, {
-                columnWidth: .34,
+                columnWidth: 0.34,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -200,7 +200,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
         }, (SuperBoxSelect.config.advanced) ? {
             layout: 'column',
             items: [{
-                columnWidth: .5,
+                columnWidth: 0.5,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{
@@ -225,7 +225,7 @@ SuperBoxSelect.panel.InputOptions = function (config) {
                     cls: 'desc-under'
                 }]
             }, {
-                columnWidth: .5,
+                columnWidth: 0.5,
                 layout: 'form',
                 labelAlign: 'top',
                 items: [{

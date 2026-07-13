@@ -27,7 +27,7 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
             items: [{
                 layout: 'column',
                 items: [{
-                    columnWidth: .5,
+                    columnWidth: 0.5,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -51,7 +51,7 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .5,
+                    columnWidth: 0.5,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -103,7 +103,7 @@ SuperBoxSelect.panel.InputOptionsResources = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .5,
+                    columnWidth: 0.5,
                     layout: 'form',
                     labelAlign: 'top',
                     hidden: !SuperBoxSelect.config.advanced,

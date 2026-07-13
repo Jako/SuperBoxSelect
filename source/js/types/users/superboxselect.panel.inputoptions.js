@@ -75,7 +75,7 @@ SuperBoxSelect.panel.InputOptionsUsers = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .34,
+                    columnWidth: 0.34,
                     layout: 'form',
                     labelAlign: 'top',
                     hidden: !SuperBoxSelect.config.advanced,

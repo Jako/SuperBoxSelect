@@ -27,7 +27,7 @@ SuperBoxSelect.panel.InputOptionsCustomTable = function (config) {
             items: [{
                 layout: 'column',
                 items: [{
-                    columnWidth: .33,
+                    columnWidth: 0.33,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -51,7 +51,7 @@ SuperBoxSelect.panel.InputOptionsCustomTable = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .33,
+                    columnWidth: 0.33,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
@@ -75,7 +75,7 @@ SuperBoxSelect.panel.InputOptionsCustomTable = function (config) {
                         cls: 'desc-under'
                     }]
                 }, {
-                    columnWidth: .34,
+                    columnWidth: 0.34,
                     layout: 'form',
                     labelAlign: 'top',
                     items: [{
